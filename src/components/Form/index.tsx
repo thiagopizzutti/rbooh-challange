@@ -1,37 +1,28 @@
 import React, { useState } from 'react';
-import { createStyles, Grid, makeStyles, TextField, Paper, Button, Container, Typography } from '@material-ui/core';
+import { createStyles, Grid, makeStyles, TextField} from '@material-ui/core';
+import AddNewPlate from '../Button';
 
 
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       '& .MuiFormControl-root': {
-        width: '100%',
+        width: '95%',
         margin: theme.spacing(2),
-
       }
-    },
-
-    paperStyle: {
-      width: "100%",
-      marginTop: "30px",
-      
-    },
-    containerStyle: {
-      width: "100%",
-      
     }
   }),
 );
 
-const Form: React.FC = () => {
-
-  const initialFieldValues = {
+const initialFieldValues = {
+  id:0,
   image: '',
   name: '',
   price: '',
   description: ''
 }
+
+const Form: React.FC = () => {
 
   const [values, setValues] = useState(initialFieldValues)
   
@@ -43,57 +34,55 @@ const Form: React.FC = () => {
     setValues({
       ...values,
       [name]: value
-    })
-  }
+    })  }
     
 
   return (
-    <Container className={classes.containerStyle}>
-      <Paper className={classes.paperStyle} >
-        <Typography
-          variant="h3"
-          color="textSecondary"
-          component="h2">Adicionar novo prato</Typography>
-        <form className={classes.root} autoComplete="off" >
-          <Grid container justify="center">
-            <Grid item>
+        
+        <form className={classes.root} autoComplete="off" style={{margin: "0 30px"}} >
+          <Grid container justify="center" alignContent="center">
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 label='Imagem'
-                name="name"
+                name="image"
                 value={values.image}
                 onChange={handleInputChange}
-
-              />
+              />              
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
-                label='Nome do Prato'
+                label='Prato'
                 name="name"
                 value={values.name}
                 onChange={handleInputChange}
-
-              />
-              <TextField
-                variant="outlined"
-                label='Descrição'
-                name="description"
-                value={values.description}
-                onChange={handleInputChange}
-              />
+              />              
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 label='Preço'
+                type="text"
                 name="price"
                 value={values.price}
                 onChange={handleInputChange}
-              />
+              />              
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                label='Descriçnao'
+                name="description"
+                value={values.description}
+                onChange={handleInputChange}
+              />              
+            </Grid>
+            <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
+          <AddNewPlate style={{ margin: "0px 0px 20px"}} />              
             </Grid>
           </Grid>
-          <Button />
-        </form>
-      </Paper>
-    </Container>
-    
+        </form>    
   );
 };
 
