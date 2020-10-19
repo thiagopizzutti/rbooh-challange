@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import {Grid, makeStyles, TextField} from '@material-ui/core';
-import Button from '../Button';
+import EditButton from '../EditButton';
 
 interface IProps{
   onSubmit: (values: FormValues) => (e: FormEvent) => Promise<void>
@@ -92,7 +92,9 @@ const Form: React.FC<IProps> = ({onSubmit, initialFieldValues}) => {
               />              
             </Grid>
             <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
-          <Button style={{ margin: "0px 0px 20px"}} type="submit" />              
+          <EditButton
+            title="Editar Prato"  
+            style={{ margin: "0px 0px 20px" }} type="submit" />              
             </Grid>
           </Grid>
         </form>    
