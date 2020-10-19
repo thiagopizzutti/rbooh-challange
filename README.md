@@ -1,44 +1,59 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Desafio 2Sow
 
-## Available Scripts
+![Desafio rboh ](/public/main.png)
+![Desafio rboh ](/public/modal.png)
 
-In the project directory, you can run:
+## About The Project
 
-### `yarn start`
+This application allows the user to create, remove and update the dishes. The project is connected with a fake API. 
+Github: https://github.com/thiagopizzutti/rbooh-challange.git
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Built With:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- [Typescript](https://www.typescriptlang.org/) - TypeScript is a typed superset of JavaScript that compiles to plain JavaScript
+- [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [MaterialUI](https://material-ui.com/) - React components for faster and easier web development. Build your own design system, or start with Material Design
 
-### `yarn test`
+<!-- GETTING STARTED -->
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `yarn build`
+<!-- PLACEHOLDER FOR PROJECT OVERVIEW -->
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+In order to run this project locally you will need to:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Clone and install this repository - https://github.com/thiagopizzutti/rbooh-challange.git
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```sh
+git clone https://github.com/thiagopizzutti/rbooh-challange.git
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. Install YARN packages
 
-## Learn More
+```sh
+yarn
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Run the app
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```sh
+yarn start
+```
+
+4. Make sure the following ports are available:
+
+```sh
+PORTS: 3000 and 5000
+```
+<!-- CONTACT -->
+
+## Contact
+
+Thiago Pizzutti - [email](mailto:tpizzutti@gmail.com) - [linkedin](https://www.linkedin.com/in/tpizzutti/)
