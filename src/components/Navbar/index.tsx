@@ -46,7 +46,7 @@ const ButtonAppBar = () => {
             <FastfoodIcon fontSize="large" />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Meu Prato Italiano
+            Meus Pratos
           </Typography>
           <Button
             onClick={handleOpenAddModal}
