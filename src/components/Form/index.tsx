@@ -1,45 +1,57 @@
-import React, { useState } from 'react';
-import { createStyles, Grid, makeStyles, TextField} from '@material-ui/core';
-import AddNewPlate from '../Button';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+import {Grid, makeStyles, TextField} from '@material-ui/core';
+import Button from '../Button';
 
+interface IProps{
+  onSubmit: (values: FormValues) => (e: FormEvent) => Promise<void>
+  initialFieldValues: FormValues
+}
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      '& .MuiFormControl-root': {
-        width: '95%',
+interface FormValues {
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+  description: string;
+  available: boolean
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+      margin: "0 30px",
+    '& .MuiFormControl-root': {
+      width: '95%',
         margin: theme.spacing(2),
       }
-    }
+  }
   }),
 );
 
-const initialFieldValues = {
-  id:0,
-  image: '',
-  name: '',
-  price: '',
-  description: ''
-}
 
-const Form: React.FC = () => {
 
-  const [values, setValues] = useState(initialFieldValues)
-  
+const Form: React.FC<IProps> = ({onSubmit, initialFieldValues}) => {
   const classes = useStyles();
 
-  const handleInputChange = (e: any) => {
+  const [values, setValues] = useState(initialFieldValues)
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     
     const { name, value } = e.target
     setValues({
       ...values,
       [name]: value
-    })  }
-    
+    })}
+  
+
+
 
   return (
         
-        <form className={classes.root} autoComplete="off" style={{margin: "0 30px"}} >
+        <form
+          className={classes.root}
+          autoComplete="off"
+          onSubmit={onSubmit(values)}
+       >
           <Grid container justify="center" alignContent="center">
             <Grid item xs={12}>
               <TextField
@@ -47,7 +59,8 @@ const Form: React.FC = () => {
                 label='Imagem'
                 name="image"
                 value={values.image}
-                onChange={handleInputChange}
+            onChange={handleInputChange}
+            
               />              
             </Grid>
             <Grid item xs={12}>
@@ -79,7 +92,7 @@ const Form: React.FC = () => {
               />              
             </Grid>
             <Grid item xs={12} style={{display: "flex", justifyContent:"center"}}>
-          <AddNewPlate style={{ margin: "0px 0px 20px"}} />              
+          <Button style={{ margin: "0px 0px 20px"}} type="submit" />              
             </Grid>
           </Grid>
         </form>    
