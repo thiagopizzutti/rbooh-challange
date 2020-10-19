@@ -9,9 +9,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Switch from '@material-ui/core/Switch';
 import { DataContext } from '../../hooks/useContext';
-import { Container, Grid } from '@material-ui/core';
+import { Container, FormControlLabel, FormGroup, Grid, Switch } from '@material-ui/core';
 import { api } from '../../services/api';
 
 
@@ -19,6 +18,11 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       maxWidth: "100",
+      '& .MuiTypography-root': {
+        fontSize: "15px",
+
+
+      }
     },
     media: {
       height: 0,
@@ -27,7 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
     expand: {
       transform: 'rotate(0deg)',
       marginLeft: 'auto',
-
     },
     expandOpen: {
       transform: 'rotate(180deg)',
@@ -35,13 +38,24 @@ const useStyles = makeStyles((theme: Theme) =>
     gridContainer: {
       paddingTop: "20px",
     },
+    switchPosition: {
+      display: "flex",
+      alignItems: "flex-end"
+    },
+    nameStyle: {
+      marginBottom: "20px"
+    },
+    descriptionStyle: {
+      marginBottom: "20px"
+      
+    }
   }),
 );
 
 
 const Cards: React.FC = () => {
 
-  const { plateItems, handleGetPlates, handleOpenEditModal } = useContext(DataContext)
+  const { plateItems, handleGetPlates, handleOpenEditModal, handletoggleChecked } = useContext(DataContext)
 
   const classes = useStyles();
 
@@ -76,17 +90,23 @@ const Cards: React.FC = () => {
                     <Typography
                       gutterBottom
                       variant="h4"
-                      component="h2">
+                      component="h2"
+                      className={classes.nameStyle}
+                    >
+                        
                       {item.name}
                     </Typography>
+                    
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
+                      className={classes.descriptionStyle}
+                      
                     >
                       {item.description}
                     </Typography>
-                    <br />
+                   
                     <Typography gutterBottom variant="h4" component="h1" style={{ color: "green" }}>
                       {parsedPrice}
                     </Typography>
@@ -104,15 +124,23 @@ const Cards: React.FC = () => {
                   <IconButton aria-label="Deletar" onClick={() => handleDelete(item.id)}>
                     <DeleteIcon style={{ fontSize: 25 }} />
                   </IconButton>
-               
-                
-
-
-                  <Switch
-                    checked={item.available}
-                    name={`${item.name}-switch`}
-                    inputProps={{ 'aria-label': 'primary checkbox' }}
-                  />
+                  
+                  <Container
+                  >
+                  <FormGroup className={classes.switchPosition}>
+                      <FormControlLabel
+                      control={<Switch
+                      size="medium"
+                      color="primary"
+                      checked={item.available}
+                      onChange={() => handletoggleChecked(item)} />
+                    }
+                    label={item.available ? 'Disponível' : 'Indisponível'}
+                      
+                    />
+                    
+                  </FormGroup>
+                  </Container>
                 </CardActions>
 
 
