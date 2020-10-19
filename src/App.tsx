@@ -1,11 +1,23 @@
+import { CssBaseline} from '@material-ui/core';
 import React from 'react';
-import './App.css';
+import Navbar from './components/Navbar';
+import PlateList from './components/PlateList';
+import GlobalStyles from './styles/global'
+import DataContextProvider from '../src/hooks/useContext'
+
 
 function App() {
+  
   return (
-    <div className="App">
-      <h1>Hello</h1>
-    </div>
+    <>
+      <DataContextProvider>
+        <Navbar />
+        <CssBaseline />
+        <PlateList />
+        <GlobalStyles />
+      </DataContextProvider>
+      
+    </>
   );
 }
 
