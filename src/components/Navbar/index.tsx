@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DataContext } from '../../hooks/useContext'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import FastfoodIcon from '@material-ui/icons/Fastfood';
-import AddNewPlate from '../Button';
+import Button from '../Button';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -27,9 +28,12 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
- const ButtonAppBar = () => {
-  const classes = useStyles();
 
+const ButtonAppBar = () => {
+  const classes = useStyles();
+  
+  const { handleOpenAddModal } = useContext(DataContext)
+  
   return (
     <div className={classes.root}>
       <AppBar position="static" color="secondary">
@@ -44,7 +48,9 @@ const useStyles = makeStyles((theme: Theme) =>
           <Typography variant="h6" className={classes.title}>
             Meu Prato Italiano
           </Typography>
-          <AddNewPlate />
+          <Button
+            onClick={handleOpenAddModal}
+          />
                    
         </Toolbar>
       </AppBar>
