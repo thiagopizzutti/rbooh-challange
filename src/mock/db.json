@@ -1,31 +1,3 @@
-// 20201016214550
-// https://raw.githubusercontent.com/rocketseat-education/gostack-template-reactjs-crud/master/server.json
-
 {
-  "dishes": [
-    {
-      "id": 1,
-      "name": "Feijoada",
-      "description": "Feijoada completa com couve, toucinho, laranja e uma caipirinha de brinde",
-      "price": "26.90",
-      "available": true,
-      "image": "https://cdn.panelinha.com.br/receita/1588270905274-39_Panelinha_12_02_200635.jpg"
-    },
-    {
-      "id": 2,
-      "name": "Barreado",
-      "description": "Carne bovina cozida em panela de barro por 24 horas",
-      "price": "21.90",
-      "available": true,
-      "image": "https://www.clickfozdoiguacu.com.br/wp-content/uploads/2018/08/barreado680.jpg"
-    },
-    {
-      "id": 3,
-      "name": "Sarapatel",
-      "description": "Diversas iguarias preparadas com vísceras de porco, cabrito ou borrego.",
-      "price": "25.90",
-      "available": true,
-      "image": "https://t1.rg.ltmcdn.com/pt/images/5/8/7/img_sarapatel_nordestino_tradicional_1785_orig.jpg"
-    }
-  ]
+  "dishes": []
 }
