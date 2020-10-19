@@ -1,36 +1,40 @@
 import React from 'react';
 import AddToPhotosRoundedIcon from '@material-ui/icons/AddToPhotosRounded';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import {ButtonProps} from '@material-ui/core'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     margin: {
       marginLeft: theme.spacing(1)
-
     }
   }),
 );
 
-const AddNewPlate = () => {
+const Button: React.FC<ButtonProps> = ({onClick, ...rest}) => {
   const classes = useStyles();
 
   return (
     
-      <Button
+      <MuiButton
       variant="contained"
       color="inherit"
       style={{
         color: "#4d4d4d",
-        fontSize: "15px",
+        fontSize: "10px",
         fontWeight: "bold",
+        
       }}
+      onClick={onClick}
+      {...rest}
+      
     
     >Adicionar prato
         <AddToPhotosRoundedIcon
           fontSize="large"              
           className={classes.margin}/>
-      </Button> 
+      </MuiButton> 
 
     
     
@@ -38,4 +42,4 @@ const AddNewPlate = () => {
   );
 };
 
-export default AddNewPlate;
+export default Button;
