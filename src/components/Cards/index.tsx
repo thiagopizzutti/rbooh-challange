@@ -28,13 +28,7 @@ const useStyles = makeStyles((theme: Theme) =>
       height: 0,
       paddingTop: '56.25%',
     },
-    expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-    },
-    expandOpen: {
-      transform: 'rotate(180deg)',
-    },
+    
     gridContainer: {
       paddingTop: "20px",
     },
@@ -46,8 +40,9 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: "20px"
     },
     descriptionStyle: {
-      marginBottom: "20px"
-      
+      marginBottom: "20px",
+      textOverflow: "ellipsis",
+      marginRight: "20px"
     }
   }),
 );
@@ -55,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Cards: React.FC = () => {
 
-  const { plateItems, handleGetPlates, handleOpenEditModal, handletoggleChecked } = useContext(DataContext)
+  const { plateItems, handleGetPlates, handleOpenEditModal, handletoggleChecked} = useContext(DataContext)
 
   const classes = useStyles();
 
