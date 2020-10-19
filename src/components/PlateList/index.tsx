@@ -1,7 +1,11 @@
-import React from 'react';
-import { Container, Grid, makeStyles, Paper } from '@material-ui/core';
-import Cards from '../Cards'
+import React, { FormEvent, useContext, useEffect } from 'react';
+import { Dialog, DialogTitle, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { DataContext, IPlates } from '../../hooks/useContext'
 import Form from '../Form';
+import Cards from '../Cards';
+import CancelIcon from '@material-ui/icons/Cancel';
+import { api } from '../../services/api';
+
 
 
 const useStyles = makeStyles({
@@ -10,43 +14,136 @@ const useStyles = makeStyles({
   },
   paperContainer: {
     padding: "20px 20px 0 20px"
+  },
+  closeModal: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 })
 
-const PlateList: React.FC = () => {
+const initialFieldValues = {
+  id: 0,
+  image: '',
+  name: '',
+  price: 0,
+  available: true,
+  description: ''
+}
 
+const PlateList: React.FC = () => {
   const classes = useStyles()
+
+  const {
+    handleGetPlates,
+    isAddModalOpen,
+    handleCloseAddModal,
+    handleCloseEditModal,
+    isEditModalOpen,
+    selectedPlate
+  } = useContext(DataContext)
+
+  useEffect(() => {
+    handleGetPlates()  
+  }, [handleGetPlates])
+
+
+
+  const handleAddPlate = ({image, name, description, price, available}: IPlates) => async (e: FormEvent) => {
+    e.preventDefault()
+
+    if (!image || !name || !price || !description) {
+      return
+    }
+
+    try {
+      const payload = {
+        image,
+        name,
+        description,
+        price: Number(price),
+        available
+      }
+      await api.post('dishes', payload)
+      handleGetPlates()
+      handleCloseAddModal()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+  const handleEditPlate = ({
+    image,
+    name,
+    price,
+    description,
+    id,
+    available
+    }: IPlates) => async (e: FormEvent) => {
+    e.preventDefault()
+    
+    if (!image || !name || !price || !description) {
+      return
+    }
+
+    try {
+      const payload = {
+        image,
+        name,
+        description,
+        available,
+        price: Number(price)
+      }
+      await api.put(`/dishes/${id}`, payload)
+      handleGetPlates()
+      handleCloseEditModal()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <>
-      <Container className={classes.paperContainer}>
-      <Paper>
-        <Form />
-      </Paper>
-      </Container>
+      
+        <Dialog
+          open={isAddModalOpen}
+          onClose={handleCloseAddModal}
+        >
+          <DialogTitle className={classes.closeModal} disableTypography>
+            <Typography variant="h4">Adicionar novo prato brasileiro</Typography>
+            <IconButton
+              onClick={handleCloseAddModal}            
+            >
+            <CancelIcon fontSize="large" color="secondary" />
+            </IconButton>
+          </DialogTitle>
 
-    <Container>
-      <Grid
-        container
-        spacing={2}
-        className={classes.gridContainer}
-        justify="center">
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Cards />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Cards />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Cards />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <Cards />
-        </Grid>
-      </Grid>
-    </Container>
+          <Form 
+            onSubmit={handleAddPlate}
+            initialFieldValues={initialFieldValues}
+          />
+          </Dialog>
+
+      <Dialog
+        open={isEditModalOpen}
+        onClose={handleCloseEditModal}
+      >
+        <DialogTitle className={classes.closeModal} disableTypography>
+          <Typography variant="h4">Adicionar novo prato brasileiro</Typography>
+          <IconButton
+            onClick={handleCloseEditModal}
+          >
+            <CancelIcon fontSize="large" color="secondary" />
+          </IconButton>
+        </DialogTitle>
+
+        <Form
+          onSubmit={handleEditPlate}
+          initialFieldValues={selectedPlate}
+        />
+      </Dialog>
+     
+      <Cards />
     </>
   );
 }
-
 export default PlateList;
