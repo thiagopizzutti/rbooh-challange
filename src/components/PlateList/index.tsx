@@ -109,7 +109,7 @@ const PlateList: React.FC = () => {
           onClose={handleCloseAddModal}
         >
           <DialogTitle className={classes.closeModal} disableTypography>
-            <Typography variant="h4">Adicionar novo prato brasileiro</Typography>
+            <Typography variant="h4">Adicionar Novo Prato</Typography>
             <IconButton
               onClick={handleCloseAddModal}            
             >
@@ -128,7 +128,7 @@ const PlateList: React.FC = () => {
         onClose={handleCloseEditModal}
       >
         <DialogTitle className={classes.closeModal} disableTypography>
-          <Typography variant="h4">Adicionar novo prato brasileiro</Typography>
+          <Typography variant="h4">Editar prato </Typography>
           <IconButton
             onClick={handleCloseEditModal}
           >
