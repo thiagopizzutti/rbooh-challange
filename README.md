@@ -1,4 +1,4 @@
-# Desafio RBooH
+# Desafio RBOOH
 
 ![Desafio rboh ](/public/main.png)
 ![Desafio rboh ](/public/modal.png)
