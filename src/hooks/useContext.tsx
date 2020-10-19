@@ -5,6 +5,8 @@ import React, {
 } from 'react';
 import { api } from '../services/api';
 
+
+
 interface IDataContext {
   plateItems: IPlates[], 
   handleGetPlates: () => Promise<void>
@@ -15,6 +17,7 @@ interface IDataContext {
   handleCloseEditModal: () => void
   isEditModalOpen: boolean
   selectedPlate: IPlates
+  handletoggleChecked: any
 }
 
 
@@ -35,6 +38,7 @@ const DataContextProvider: React.FC = ({ children }) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [selectedPlate, setSelectedPlate] = useState({} as IPlates)
+  
 
 
   const handleGetPlates = useCallback(async() => {
@@ -60,7 +64,26 @@ const DataContextProvider: React.FC = ({ children }) => {
   const handleCloseEditModal = useCallback(() => {
     setIsEditModalOpen(false)
     setSelectedPlate({} as IPlates)
-  },[])
+  }, [])
+  
+  const handletoggleChecked = async (dish: any) => {
+    await api.put(`/dishes/${dish.id}`,{
+    ...dish,
+      available: !dish.available
+
+    })
+    setPlateItems(state => state.map(item => {
+      if (item.id === dish.id) {
+        return {
+          ...item,
+          available: !item.available
+        }
+
+      }
+      return item
+
+    }))
+};
  
   
   return (
@@ -74,7 +97,9 @@ const DataContextProvider: React.FC = ({ children }) => {
         handleOpenEditModal,
         handleCloseEditModal,
         isEditModalOpen,
-        selectedPlate
+        selectedPlate,
+        handletoggleChecked,
+        
         
       }}
     >
